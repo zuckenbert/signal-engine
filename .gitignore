@@ -1,0 +1,16 @@
+# Saidas geradas que nao versionamos
+*.pdf
+
+# Lixo de SO
+.DS_Store
+
+# Dados brutos de coleta (cada eixo pode escrever aqui durante o run)
+_raw/
+**/_raw/
+
+# Temporarios
+*.tmp
+*.log
+*.bak
+.cache/
+node_modules/

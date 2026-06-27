@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Continuity state for this axis. Source of truth for NEW vs ONGOING classification. Updated weekly. 'since' = real-world date of the underlying move; 'first_seen_week' = first week WE tracked it; 'weeks_seen' = every week the signal re-appeared.",
+  "status_legend": {
+    "NEW": "first time tracked this week",
+    "ESCALATING": "previously tracked + a new development this week",
+    "ONGOING": "still visible, no new development (report compactly with week count)",
+    "DORMANT": "not seen for 2+ weeks",
+    "RESOLVED": "concluded or not seen for 4+ weeks, archived"
+  },
+  "config": { "dormant_after_weeks": 2, "resolved_after_weeks": 4 },
+  "last_run_week": null,
+  "last_run_date": null,
+  "themes": []
+}
