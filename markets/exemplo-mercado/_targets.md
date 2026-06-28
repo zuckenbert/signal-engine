@@ -1,13 +1,14 @@
-# Targets: Mercado Exemplo (software financeiro no País X)
+# Targets: Mercado Exemplo (software de gestão para e-commerce no País X)
 
 > EXEMPLO ILUSTRATIVO. APAGUE esta pasta e crie o seu mercado clonando `_TEMPLATE_MARKET/`.
-> Os valores abaixo são fictícios, só pra mostrar como a suite fica preenchida com 2 sinais ligados.
+> O vertical abaixo (uma empresa fictícia que vende software de gestão para lojas de e-commerce)
+> é só pra mostrar como a suite fica preenchida com 2 sinais ligados. Troque pelo seu mercado.
 > A fonte de verdade do ICP, personas e mapa sinal -> produto é o `MARKET.md` na raiz.
 > Estilo: nunca usar travessão.
 
 ## Identidade do mercado
 
-- **Nome / geografia**: Mercado de exemplo, software financeiro no País X
+- **Nome / geografia**: Mercado de exemplo, software de gestão para e-commerce no País X
 - **Idioma dos relatórios**: PT-BR
 - **Fuso de operação**: herda da seção 9 do MARKET.md
 - **Janela padrão**: ISO week (segunda a domingo)
@@ -20,7 +21,7 @@
 
 Pesca empresas que acabaram de anunciar captação, porque costuma abrir orçamento e janela de decisão.
 
-- **Queries-semente**: "captou rodada" + software financeiro + País X; "raised seed/series A" + fintech + País X
+- **Queries-semente**: "captou rodada" + e-commerce/varejo digital + País X; "raised seed/series A" + e-commerce + País X
 - **Termos / cargos que contam**: rodada, seed, série A, aporte; e os cargos da seção 5 do MARKET.md
 - **Janela**: últimas 2 semanas
 - **Filtro de ICP**: aplica o ICP da seção 4 do MARKET.md
@@ -29,8 +30,8 @@ Pesca empresas que acabaram de anunciar captação, porque costuma abrir orçame
 
 Pesca empresas abrindo vagas na área que o seu produto toca.
 
-- **Queries-semente**: vaga "engenheiro de plataforma financeira" + País X; "estamos contratando" + infraestrutura de pagamentos
-- **Termos / cargos que contam**: engenheiro de plataforma, engenheiro de pagamentos, tech lead do tema que você atende
+- **Queries-semente**: vaga "analista de operações de e-commerce" + País X; "estamos contratando" + logística/fulfillment
+- **Termos / cargos que contam**: analista de operações, coordenador de logística, gerente de e-commerce, tech lead do tema que você atende
 - **Janela**: vagas abertas nas últimas 4 semanas
 - **Filtro de ICP**: aplica o ICP do MARKET.md (descarta concorrente e fornecedor)
 
