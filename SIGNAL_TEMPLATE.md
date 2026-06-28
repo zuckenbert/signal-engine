@@ -1,7 +1,7 @@
 # Sinais: {EIXO} - {YYYY-WXX}
 
-> Template generico de relatorio de um eixo numa semana. Copie para `{eixo}/weeks/{YYYY-WXX}/{eixo}.md` e preencha.
-> Idioma: PT-BR. Nunca usar travessao.
+> Template genérico de relatório de um eixo numa semana. Copie para `{eixo}/weeks/{YYYY-WXX}/{eixo}.md` e preencha.
+> Idioma: PT-BR. Nunca usar travessão.
 
 - **Eixo**: {EIXO}
 - **Semana**: {YYYY-WXX} (janela: {DATA_INICIO} a {DATA_FIM})
@@ -10,8 +10,8 @@
 
 ## Resumo executivo
 
-<!-- SO entram aqui os sinais NEW e ESCALATING. Nunca ONGOING.
-     Uma linha por movimento, dizendo o que e novo vs a semana passada. -->
+<!-- SÓ entram aqui os sinais NEW e ESCALATING. Nunca ONGOING.
+     Uma linha por movimento, dizendo o que é novo vs a semana passada. -->
 - {sinal novo 1}
 - {sinal escalando 2 (o que mudou)}
 
@@ -23,21 +23,21 @@
 
 ## Notas de outreach
 
-<!-- Como abordar cada sinal: angulo, gancho, CTA. Opcional por linha. -->
-- {alvo}: {angulo de abordagem}
+<!-- Como abordar cada sinal: ângulo, gancho, CTA. Opcional por linha. -->
+- {alvo}: {ângulo de abordagem}
 
 ## Enriquecimento (opcional)
 
 <!-- Preencha quando o sinal virar lead trabalhado. -->
 
-| Empresa | Dominio | Tamanho | Contato | Cargo | Email | LinkedIn |
+| Empresa | Domínio | Tamanho | Contato | Cargo | Email | LinkedIn |
 | --- | --- | --- | --- | --- | --- | --- |
 | {empresa} | {dominio.exemplo} | {tamanho} | {nome} | {cargo} | {email} | {url linkedin} |
 
-## Definicoes de Status
+## Definições de Status
 
-- **PENDING**: sinal capturado, ainda nao revisado.
+- **PENDING**: sinal capturado, ainda não revisado.
 - **APPROVED**: revisado, vale acionar.
-- **SKIPPED**: revisado, descartado (ruido ou fora de fit).
+- **SKIPPED**: revisado, descartado (ruído ou fora de fit).
 - **SENT**: outreach enviado.
 - **REPLIED**: alvo respondeu.

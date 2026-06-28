@@ -1,12 +1,12 @@
 # Targets: _TEMPLATE_AXIS
 
 <!-- COMO ADAPTAR ESTE EIXO:
-     1. Liste os alvos/fontes que este eixo monitora (URLs canonicas, contas, registros, APIs).
+     1. Liste os alvos/fontes que este eixo monitora (URLs canônicas, contas, registros, APIs).
      2. Aponte de volta pro MARKET.md como fonte de verdade de QUEM importa (ICP, concorrentes, etc).
-     3. Defina o que conta como sinal vs ruido pra ESTA fonte.
-     4. Preencha o mapa sinal -> produto cruzando com a secao 8 do MARKET.md. -->
+     3. Defina o que conta como sinal vs ruído pra ESTA fonte.
+     4. Preencha o mapa sinal -> produto cruzando com a seção 8 do MARKET.md. -->
 
-> Estilo: nunca usar travessao.
+> Estilo: nunca usar travessão.
 
 ## Alvos / fontes a monitorar
 
@@ -14,17 +14,17 @@
 | --- | --- | --- | --- |
 | {ALVO_1} | {tipo} | {url} | {API / busca / scrape} |
 
-## Filtro (insider / ruido), se aplicavel
+## Filtro (insider / ruído), se aplicável
 
 <!-- COMO ADAPTAR: quem ou o que descartar antes de classificar. -->
 
-## O que conta como sinal (vs ruido)
+## O que conta como sinal (vs ruído)
 
-- **Sinal**: {COMO ADAPTAR: o que, nesta fonte, e sinal real de intent/fit}
-- **Ruido**: {COMO ADAPTAR: o que descartar}
+- **Sinal**: {COMO ADAPTAR: o que, nesta fonte, é sinal real de intent/fit}
+- **Ruído**: {COMO ADAPTAR: o que descartar}
 
 ## Mapa sinal -> produto
 
-| Sinal observado | Produto a puxar (do MARKET.md) | Angulo |
+| Sinal observado | Produto a puxar (do MARKET.md) | Ângulo |
 | --- | --- | --- |
-| {sinal} | {PRODUTO_?} | {angulo} |
+| {sinal} | {PRODUTO_?} | {ângulo} |

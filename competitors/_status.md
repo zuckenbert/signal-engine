@@ -1,11 +1,11 @@
 # Status: Concorrentes
 
-> Dashboard do eixo + log de execucoes. Atualizado a cada run.
-> Estilo: nunca usar travessao.
+> Dashboard do eixo + log de execuções. Atualizado a cada run.
+> Estilo: nunca usar travessão.
 
 ## Dashboard
 
-- **Ultima semana rodada**: (nenhuma ainda)
+- **Última semana rodada**: (nenhuma ainda)
 - **Temas ativos (NEW/ESCALATING/ONGOING)**: 0
 - **Temas dormentes**: 0
 - **Temas resolvidos**: 0
@@ -14,4 +14,4 @@
 
 | Semana | Data do run | # sinais | # NEW | # ESCALATING | Notas |
 | --- | --- | --- | --- | --- | --- |
-| (exemplo, apague) 2026-W01 | 2026-01-05 | 0 | 0 | 0 | Bootstrap, memoria vazia |
+| (exemplo, apague) 2026-W01 | 2026-01-05 | 0 | 0 | 0 | Bootstrap, memória vazia |

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Monta o DIGEST: concatena o relatorio de cada eixo da semana num markdown so.
-# Cada eixo vira uma secao H1. Corrige tabelas (linha em branco antes, GFM) e
-# remove o H1 proprio de cada relatorio. Uso: WEEK_ID=2026-W24 ./digest/build_digest.sh
+# Monta o DIGEST: concatena o relatório de cada eixo da semana num markdown só.
+# Cada eixo vira uma seção H1. Corrige tabelas (linha em branco antes, GFM) e
+# remove o H1 próprio de cada relatório. Uso: WEEK_ID=2026-W24 ./digest/build_digest.sh
 set -euo pipefail
 WEEK_ID="${WEEK_ID:-$(date -u +%Y-W%V)}"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -10,7 +10,7 @@ mkdir -p "$(dirname "$OUT")"
 AXES=(
   "competitors/weeks/$WEEK_ID/competitors.md|Concorrentes|Movimentos institucionais e de porta-vozes dos concorrentes"
   "community/weeks/$WEEK_ID/community.md|Comunidade|Intent dev-led/community-led: quem do seu ICP interage com seus projetos ou comunidade"
-  "social/weeks/$WEEK_ID/social.md|Social|Intent marketing-led: quem do seu ICP engaja no seu conteudo social"
+  "social/weeks/$WEEK_ID/social.md|Social|Intent marketing-led: quem do seu ICP engaja no seu conteúdo social"
 )
 prep_axis() {
   sed '/^# /d' "$1" \
@@ -23,7 +23,7 @@ present=0
     f="${a%%|*}"; rest="${a#*|}"; name="${rest%%|*}"; desc="${rest#*|}"
     printf '\n\n<div class="pagebreak"></div>\n\n# %s\n\n*%s*\n\n' "$name" "$desc"
     if [ -f "$ROOT/$f" ]; then prep_axis "$ROOT/$f"; present=$((present+1));
-    else echo "_Sem relatorio para $WEEK_ID neste eixo (rotina nao rodou ou nao ha sinais)._"; fi
+    else echo "_Sem relatório para $WEEK_ID neste eixo (rotina não rodou ou não há sinais)._"; fi
   done
 } > "$OUT"
 echo "digest: $present de ${#AXES[@]} eixos presentes em $WEEK_ID" >&2

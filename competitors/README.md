@@ -1,29 +1,29 @@
 # Eixo: Concorrentes (`competitors/`)
 
-Antena apontada para o movimento dos seus concorrentes: o que eles publicam na web (noticias, lancamentos, parcerias) e o que muda nas paginas proprias deles (site, blog, sala de imprensa).
+Antena apontada para o movimento dos seus concorrentes: o que eles publicam na web (notícias, lançamentos, parcerias) e o que muda nas páginas próprias deles (site, blog, sala de imprensa).
 
 ## O que este eixo monitora
 
-- Anuncios institucionais: lancamentos, parcerias, rodadas, contratacoes-chave, expansao.
+- Anúncios institucionais: lançamentos, parcerias, rodadas, contratações-chave, expansão.
 - Movimento de porta-vozes: o que executivos e times dos concorrentes dizem em entrevistas, posts e palestras.
-- Mudanca nas paginas proprias do concorrente: nova pagina de produto, mudanca de pricing, nova mensagem na home.
+- Mudança nas páginas próprias do concorrente: nova página de produto, mudança de pricing, nova mensagem na home.
 
 ## Como funciona
 
 Toda semana o eixo faz dois passos:
 
-1. **Descoberta**: busca noticias e le as paginas dos concorrentes listados em `_targets.md` (que apontam pro `MARKET.md`), detectando o que e novo na janela da semana.
-2. **Reconciliacao**: cada achado e casado contra a memoria de continuidade (`_state.json`) pra decidir se e novo de verdade ou se ja foi visto. So NEW e ESCALATING entram no resumo executivo.
+1. **Descoberta**: busca notícias e lê as páginas dos concorrentes listados em `_targets.md` (que apontam pro `MARKET.md`), detectando o que é novo na janela da semana.
+2. **Reconciliação**: cada achado é casado contra a memória de continuidade (`_state.json`) pra decidir se é novo de verdade ou se já foi visto. Só NEW e ESCALATING entram no resumo executivo.
 
-## A maquina de continuidade (5 estados)
+## A máquina de continuidade (5 estados)
 
 | Estado | Significado | Como reportar |
 | --- | --- | --- |
 | **NEW** | 1a vez rastreado nesta semana | Entra no resumo executivo |
-| **ESCALATING** | Ja rastreado antes + desdobramento novo nesta semana | Entra no resumo executivo (destaque o que mudou) |
-| **ONGOING** | Continua visivel, sem novidade | Compacto, com contagem de semanas. NUNCA no resumo executivo |
-| **DORMANT** | Nao visto ha 2 ou mais semanas | Fora do relatorio ativo |
-| **RESOLVED** | Concluido ou nao visto ha 4 ou mais semanas | Arquivado |
+| **ESCALATING** | Já rastreado antes + desdobramento novo nesta semana | Entra no resumo executivo (destaque o que mudou) |
+| **ONGOING** | Continua visível, sem novidade | Compacto, com contagem de semanas. NUNCA no resumo executivo |
+| **DORMANT** | Não visto há 2 ou mais semanas | Fora do relatório ativo |
+| **RESOLVED** | Concluído ou não visto há 4 ou mais semanas | Arquivado |
 
 **Regra de ouro: NUNCA reporte ONGOING como novidade.**
 
@@ -51,12 +51,12 @@ Toda semana o eixo faz dois passos:
 | --- | --- |
 | `README.md` | Este arquivo |
 | `_targets.md` | Config: quais concorrentes e URLs monitorar, mapa pro produto |
-| `_state.json` | Memoria maquina-legivel (fonte de verdade NEW vs ONGOING) |
-| `_themes.md` | Memoria humana-legivel (registro rolante de temas) |
+| `_state.json` | Memória máquina-legível (fonte de verdade NEW vs ONGOING) |
+| `_themes.md` | Memória humana-legível (registro rolante de temas) |
 | `_status.md` | Dashboard + Weekly Run Log |
 | `_routine_prompt.md` | Prompt self-contained que o agente executa pra rodar o eixo na semana |
-| `weeks/<week>/competitors.md` | Relatorio gerado de cada semana |
+| `weeks/<week>/competitors.md` | Relatório gerado de cada semana |
 
 ## Custo
 
-Roda barato: busca de noticias e leitura de paginas no free tier de uma ferramenta de busca/scrape, e a reconciliacao e escrita dentro da sua assinatura de IA. Custo marginal por semana tende a zero.
+Roda barato: busca de notícias e leitura de páginas no free tier de uma ferramenta de busca/scrape, e a reconciliação e escrita dentro da sua assinatura de IA. Custo marginal por semana tende a zero.

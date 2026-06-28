@@ -1,10 +1,10 @@
 # Digest
 
-O digest e onde o dado bruto vira contexto pro time.
+O digest é onde o dado bruto vira contexto pro time.
 
-Cada eixo gera, na sua pasta `weeks/<week>/`, um relatorio da semana. Solto, isso e tres ou quatro arquivos espalhados. O digest concatena o relatorio de cada eixo numa unica leitura: um markdown so, costurando o mercado de cima a baixo, na ordem dos eixos.
+Cada eixo gera, na sua pasta `weeks/<week>/`, um relatório da semana. Solto, isso é três ou quatro arquivos espalhados. O digest concatena o relatório de cada eixo numa única leitura: um markdown só, costurando o mercado de cima a baixo, na ordem dos eixos.
 
-Em vez de pedir que comercial, produto ou lideranca abram quatro pastas, voce entrega um documento. E onde a maquina deixa de ser "varios monitoramentos" e passa a ser "a semana do mercado".
+Em vez de pedir que comercial, produto ou liderança abram quatro pastas, você entrega um documento. É onde a máquina deixa de ser "vários monitoramentos" e passa a ser "a semana do mercado".
 
 ## Como gerar
 
@@ -12,17 +12,17 @@ Em vez de pedir que comercial, produto ou lideranca abram quatro pastas, voce en
 WEEK_ID=AAAA-WXX ./digest/build_digest.sh
 ```
 
-Se `WEEK_ID` for omitido, o script usa a ISO week de hoje (UTC). A saida vai pra `digest/weeks/<WEEK_ID>/full.md`.
+Se `WEEK_ID` for omitido, o script usa a ISO week de hoje (UTC). A saída vai pra `digest/weeks/<WEEK_ID>/full.md`.
 
 ## O que o script faz
 
 - Percorre a lista de eixos (`AXES` dentro do script).
-- Pra cada eixo, abre uma secao `H1` com nome e descricao, precedida de um pagebreak (util se voce exportar pra PDF depois).
-- Insere o relatorio daquele eixo, com tres ajustes (funcao `prep_axis`):
-  1. Remove o `H1` proprio do relatorio (o digest ja poe o titulo da secao).
-  2. Troca qualquer travessao (em dash ou en dash) por virgula, por garantia de estilo.
+- Pra cada eixo, abre uma seção `H1` com nome e descrição, precedida de um pagebreak (útil se você exportar pra PDF depois).
+- Insere o relatório daquele eixo, com três ajustes (função `prep_axis`):
+  1. Remove o `H1` próprio do relatório (o digest já põe o título da seção).
+  2. Troca qualquer travessão (em dash ou en dash) por vírgula, por garantia de estilo.
   3. Insere uma linha em branco antes de tabelas, pra elas renderizarem como GFM (GitHub Flavored Markdown).
-- Se um eixo nao tem relatorio naquela semana (rotina nao rodou ou nao houve sinais), escreve um aviso no lugar e segue.
+- Se um eixo não tem relatório naquela semana (rotina não rodou ou não houve sinais), escreve um aviso no lugar e segue.
 - No fim, reporta no stderr quantos eixos dos esperados estavam presentes.
 
 ## Adicionar um eixo ao digest
