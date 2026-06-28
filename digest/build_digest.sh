@@ -35,10 +35,15 @@ prep_axis() {
 # Monta a lista de secoes dinamicamente: "caminho|Nome Exibido|Descricao".
 SECTIONS=()
 
-# 1) Mercados (modo descoberta): uma secao por mercado, pulando o _TEMPLATE_MARKET.
+# 1) Mercados (modo descoberta): uma secao por mercado, pulando os de exemplo.
+#    Pula _TEMPLATE_MARKET, exemplo-mercado, e qualquer pasta que comece com
+#    '_' (molde/interno) ou com 'exemplo' (ilustrativa). Assim o digest nao
+#    mostra secoes de exemplo vazias.
 for d in "$ROOT"/markets/*/; do
   market="$(basename "$d")"
-  [ "$market" = "_TEMPLATE_MARKET" ] && continue
+  case "$market" in
+    _*|exemplo*) continue ;;
+  esac
   f="markets/$market/weeks/$WEEK_ID/consolidated.md"
   SECTIONS+=("$f|Mercado: $market|Descoberta de empresas no mercado $market (consolidado de todos os sinais)")
 done

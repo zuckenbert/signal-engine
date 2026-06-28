@@ -6,11 +6,19 @@ Um motor (fork e preencha) para construir uma máquina que escuta o seu mercado.
 
 ### 👋 Não entende nada de código? Sem problema.
 
-Copie a linha abaixo e cole no seu assistente de IA (ex: Claude), trocando a URL pela deste repositório:
+O jeito mais fácil:
+
+1. Clone (baixe) este repositório.
+2. Abra a pasta no Claude Code.
+3. Rode a skill `signal-setup`.
+
+A skill `signal-setup` conduz TUDO passo a passo: ela te entrevista (uma pergunta de cada vez), preenche as configurações por você, te ajuda a escolher o que monitorar e deixa o sistema pronto. Você não precisa saber o que é Actions, schedule ou Git.
+
+**Não usa Claude Code?** Como alternativa (fallback), copie a linha abaixo e cole no seu assistente de IA, trocando a URL pela deste repositório:
 
 > "Leia o repositório <URL_DESTE_REPO> e me guie, passo a passo, pra montar meu monitoramento de mercado. Pode me entrevistar pra preencher as configurações."
 
-O assistente vai ler o repo, te entrevistar e conduzir tudo. Você não precisa saber o que é Actions, schedule ou Git.
+O assistente vai ler o repo, te entrevistar e conduzir tudo.
 
 ## O que é
 
@@ -170,7 +178,19 @@ O repo é um motor extensível. Você adiciona o que quiser de dois jeitos:
 
 Comece pequeno (um eixo ou um mercado com 1 ou 2 sinais) e amplie.
 
+## Skills incluídas
+
+O repo vem com skills (procedimentos prontos) que rodam no Claude Code. Elas ficam em `.claude/skills/` e aparecem sozinhas quando você abre a pasta no Claude Code (não precisa instalar nada):
+
+- **`signal-setup`**: o setup guiado. Conduz o onboarding passo a passo, te entrevistando pra preencher o `MARKET.md`, escolher o que monitorar e configurar os eixos. É por aqui que você começa.
+- **`signal-week`**: roda uma semana ponta a ponta sobre os eixos/mercados já configurados (coleta, interpreta, reconcilia a continuidade), monta o digest e entrega o resumo.
+- **`digest/render.sh`**: não é uma skill, é o script que transforma o digest da semana num PDF com acabamento profissional e visual neutro (sem marca). A skill `signal-week` chama ele no final.
+
+O caminho feliz é: `signal-setup` (uma vez) e depois `signal-week` (toda semana).
+
 ## QUICKSTART: plugue seu mercado
+
+> Caminho feliz no Claude Code: clone o repo, rode a skill `signal-setup` (faz todo o setup guiado), depois rode a skill `signal-week` (roda a semana e gera o PDF). Os passos manuais abaixo detalham o que essas skills fazem por baixo, pra quem quiser entender ou rodar sem skills.
 
 ### Passo 1: preencha `MARKET.md`
 É a única config global. Diga quem você é, o que vende, qual seu mercado, seu ICP, suas personas, seus concorrentes, seu regulador (se houver), seus mercados/geografias e o mapa "sinal -> produto". Tudo vem com placeholder e instrução inline.
@@ -186,7 +206,7 @@ Duas formas:
 As ferramentas de busca e leitura web entram como conectores (MCP) do seu agente. Não há nada proprietário amarrado.
 
 ### Passo 4: rode a 1a semana
-Rode o `_routine_prompt.md` de cada eixo/mercado. Na 1a semana, tudo será NEW (a memória começa vazia). A partir da 2a semana, a máquina de continuidade começa a separar novo de contínuo. Depois, rode `WEEK_ID=AAAA-WXX ./digest/build_digest.sh` pra costurar o digest.
+No Claude Code, é só rodar a skill `signal-week`: ela executa cada eixo/mercado, monta o digest e gera o PDF. Na mão, faça o mesmo na ordem: rode o `_routine_prompt.md` de cada eixo/mercado, depois `WEEK_ID=AAAA-WXX ./digest/build_digest.sh` pra costurar o digest, e por fim `WEEK_ID=AAAA-WXX ./digest/render.sh` pra gerar o PDF polido (neutro). Na 1a semana, tudo será NEW (a memória começa vazia). A partir da 2a semana, a máquina de continuidade começa a separar novo de contínuo.
 
 ## Custo estimado
 
@@ -199,7 +219,9 @@ Na prática, o custo marginal de mais uma semana tende a zero. O investimento é
 
 ## Para o assistente de IA: como guiar a pessoa do zero
 
-Esta seção é endereçada a você, assistente de IA. Quando alguém te disser "leia este repo e me guie", siga este roteiro de onboarding:
+> A forma CANÔNICA de fazer o setup é a skill `signal-setup` (em `.claude/skills/`). Ela impõe o passo a passo (uma pergunta de cada vez, nunca assumir, confirmar por seção, não rodar coleta no setup) e é o que você deve usar no Claude Code. O protocolo em texto abaixo é o FALLBACK, pra ambientes que não suportam skills.
+
+Esta seção é endereçada a você, assistente de IA. Quando alguém te disser "leia este repo e me guie" e você não puder usar a skill `signal-setup`, siga este roteiro de onboarding. Reforce sempre as regras anti-churn: faça UMA pergunta de cada vez e espere a resposta, NUNCA assuma ou preencha um campo por suposição, CONFIRME cada seção antes de gravar, e NÃO rode nenhuma coleta ou descoberta durante o setup (o setup só monta a config).
 
 1. **Explique em 3 linhas, sem jargão, o que este sistema faz.** Algo como: é uma máquina que escuta o mercado da pessoa e, toda semana, manda pra ela um resumo do que mudou. Ela escolhe as fontes que quer ouvir e o sistema separa o que é novo do que é repetição.
 2. **ENTREVISTE a pessoa pra descobrir O QUE ela quer monitorar.** Antes de preencher arquivos, entenda o negócio dela, o mercado, e quais sinais importam. Os eixos que vêm no repo são só exemplos: a lista do que monitorar é dela.

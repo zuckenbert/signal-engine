@@ -1,0 +1,189 @@
+/* ===========================================================================
+   Folha de estilo do PDF do digest. Tipografia limpa e profissional, NEUTRA.
+   Sem marca, sem cor de empresa. Quem usa pluga a propria identidade se quiser.
+   Estilo de comentario: PT-BR, sem travessao.
+   =========================================================================== */
+
+/* Pagina A4 com margem confortavel e numero de pagina no rodape (texto neutro). */
+@page {
+  size: A4;
+  margin: 22mm 20mm 20mm 20mm;
+
+  @bottom-center {
+    content: "Signal Engine, digest, pagina " counter(page) " de " counter(pages);
+    font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 8pt;
+    color: #6b6b6b;
+  }
+}
+
+/* Paleta neutra:
+   tinta escura  #1a1a1a (texto)
+   cinza         #6b6b6b (secundario)
+   hairline      #e5e5e5 (linhas finas)
+   acento sobrio #2f6f8f (azul-ardosia, NAO cor de marca) */
+:root {
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --hairline: #e5e5e5;
+  --accent: #2f6f8f;
+}
+
+html {
+  font-size: 10.5pt;
+}
+
+body {
+  font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Quebra de pagina entre secoes do digest. */
+.pagebreak {
+  page-break-before: always;
+}
+
+/* H1 por secao: o cabecalho destacado de cada eixo/mercado. */
+h1 {
+  font-size: 19pt;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 0.2em 0;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+}
+
+h2 {
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 1.4em 0 0.4em 0;
+}
+
+h3 {
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 1.1em 0 0.3em 0;
+}
+
+h4, h5, h6 {
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0.9em 0 0.3em 0;
+}
+
+p {
+  margin: 0 0 0.7em 0;
+}
+
+/* A descricao em italico que o build_digest poe logo abaixo do H1 da secao. */
+h1 + p em,
+h1 + p {
+  color: var(--muted);
+}
+
+em {
+  color: var(--muted);
+  font-style: italic;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+ul, ol {
+  margin: 0 0 0.7em 1.4em;
+  padding: 0;
+}
+
+li {
+  margin: 0 0 0.25em 0;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 1.4em 0;
+}
+
+/* Citacoes / blocos de destaque. */
+blockquote {
+  margin: 0 0 0.8em 0;
+  padding: 0.1em 0 0.1em 1em;
+  border-left: 3px solid var(--hairline);
+  color: var(--muted);
+}
+
+/* Codigo: discreto e monoespacado. */
+code {
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 9pt;
+  background: #f6f6f6;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+pre {
+  background: #f6f6f6;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 0.8em 1em;
+  overflow-x: auto;
+  font-size: 9pt;
+  line-height: 1.4;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Tabelas: header discreto, linhas com hairline, numerais tabulares. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.6em 0 1em 0;
+  font-size: 9.5pt;
+  font-variant-numeric: tabular-nums;
+}
+
+thead th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--ink);
+  background: #f6f6f6;
+  border-bottom: 1.5px solid var(--hairline);
+  padding: 0.45em 0.6em;
+}
+
+tbody td {
+  border-bottom: 1px solid var(--hairline);
+  padding: 0.4em 0.6em;
+  vertical-align: top;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Evita orfaos de cabecalho no fim da pagina. */
+h1, h2, h3, h4 {
+  page-break-after: avoid;
+}
+
+table, pre, blockquote {
+  page-break-inside: avoid;
+}

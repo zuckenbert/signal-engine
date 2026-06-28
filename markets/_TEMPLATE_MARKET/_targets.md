@@ -18,6 +18,10 @@
 > Ligue poucos pra começar (1 ou 2) e vá ampliando. Para CADA sinal ligado, preencha os campos
 > de configuração logo abaixo dele (queries-semente, termos/cargos, janela, filtro de ICP).
 > No fim, há um espaço pra você criar os seus próprios sinais.
+>
+> Guia de janela: sinais raros (lançamento, rodada, troca de liderança) podem não acontecer toda
+> semana. Pra esses, prefira uma janela de 4 a 6 semanas (pegando o que é novo desde o último run),
+> não 1 semana rígida. O que garante que nada se repete é a memória de continuidade, não a janela curta.
 
 ### [ ] fundraising (quem captou rodada)
 

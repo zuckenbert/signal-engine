@@ -32,6 +32,8 @@ Este mercado é de DESCOBERTA. Não há `collect.sh` nem Actions de coleta. Não
 4. **Enriqueça o ator** (a empresa que disparou o sinal): setor, tamanho, e, quando o sinal pede, investidores (em fundraising) ou status regulatório (em regulatory). Identifique também o decisor/persona (cruze com a seção 5 do MARKET.md).
 5. **Classifique o FIT contra o ICP** (seção 4 do MARKET.md): marque fit alto, médio ou baixo. DESCARTE quem não tem fit (concorrente, fornecedor, fora da geografia, fora do tamanho). Este é o filtro de ruído do modo descoberta: sem ele, descoberta vira lixo.
 
+**Nota sobre sinais de baixa frequência**: sinais de baixa frequência (lançamento, rodada, troca de liderança) podem não acontecer toda semana. Se um sinal vier vazio com janela de 1 semana, use uma janela efetiva maior (ex: 4 a 6 semanas) pra esse sinal, pegando o que é novo desde o último run. O importante é a continuidade (não reportar de novo o que já foi visto), não a janela rígida de 7 dias.
+
 Junte os achados de cada sinal numa lista, cada um com: empresa, sinal, setor, tamanho, investidores/status regulatório (se aplicável), decisor/persona, fit, o detalhe do evento (o que e quando), e a(s) URL(s) de evidência.
 
 ## Passo 4: Reconciliação contra `_state.json`
