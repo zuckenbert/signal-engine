@@ -1,15 +1,15 @@
 # ============================================================================
-# WORKFLOW DE EXEMPLO: coleta deterministica do eixo Comunidade
+# WORKFLOW DE EXEMPLO: coleta deterministica do eixo Registros Oficiais
 # ============================================================================
 # Este e o BRACO. Coleta MECANICA, SEM LLM. Ele so roda o collect.sh do eixo
-# (que chama uma API/endpoint fixo) e commita o dado cru em community/_raw/.
-# Esse _raw versionado e o "bastao" que o Actions passa pra rotina (a LLM) ler
-# e interpretar depois. A INTERPRETACAO nao acontece aqui.
+# (que chama uma API/endpoint fixo) e commita o dado cru em
+# official-records/_raw/. Esse _raw versionado e o "bastao" que o Actions passa
+# pra rotina (a LLM) ler e interpretar depois. A INTERPRETACAO nao acontece aqui.
 #
 # Estilo: comentarios em PT-BR, sem travessao.
 # ----------------------------------------------------------------------------
 
-name: collect-community
+name: collect-records
 
 on:
   # Roda no agendador do GitHub. O cron abaixo esta SEMANAL (segunda 06:00 UTC).
@@ -37,17 +37,17 @@ jobs:
         # (Settings -> Secrets and variables -> Actions) e exponha via env:
         env:
           MINHA_API_KEY: ${{ secrets.MINHA_API_KEY }}   # exemplo, troque pelo nome do seu secret
-        run: bash community/collect.sh
+        run: bash official-records/collect.sh
 
       - name: Commita o dado cru (_raw)
         run: |
           git config user.name  "signal-engine-bot"
           git config user.email "signal-engine-bot@users.noreply.github.com"
-          git add community/_raw/
+          git add official-records/_raw/
           # So commita se houver mudanca (evita commit vazio quebrar o passo).
           if git diff --cached --quiet; then
             echo "Nenhum dado novo pra commitar."
           else
-            git commit -m "chore(community): coleta deterministica _raw"
+            git commit -m "chore(official-records): coleta deterministica _raw"
             git push
           fi

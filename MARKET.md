@@ -83,3 +83,14 @@
 - **Idioma dos relatórios**: {ex: PT-BR}
 - **Fuso de operação**: {ex: America/Sao_Paulo}
 - **Janela da semana**: ISO week (segunda a domingo)
+
+## 10. Mercados / geografias
+
+<!-- preencha: os mercados ou geografias que você quer cobrir no motor de descoberta.
+     Cada um vira uma PASTA dentro de markets/ (clone markets/_TEMPLATE_MARKET/ e renomeie).
+     Se você só atua num mercado, liste só ele. Os exemplos são genéricos: apague e troque. -->
+
+| Mercado / geografia | Pasta em markets/ | Idioma / fuso (se diferente do default) |
+| --- | --- | --- |
+| {ex: Brasil} | {markets/brasil} | {herda da seção 9, ou especifique} |
+| {ex: Mercado X no País Y} | {markets/mercado-x} | {ex: idioma e fuso próprios} |

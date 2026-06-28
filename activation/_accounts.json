@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Accumulator of accounts (companies) for activation. Each account aggregates signals seen across all axes and weeks. Updated weekly by the activation routine. An account only generates a proposal when it crosses a threshold (see _playbook.md). Comment fields below document the shape.",
+  "_account_shape": {
+    "account": "nome canonico da empresa (entidade resolvida entre eixos)",
+    "domain": "dominio da empresa (ajuda a deduplicar)",
+    "fit": "alto | medio | baixo (resultado do fit floor / ICP)",
+    "signals": [
+      {
+        "axis": "eixo de origem (ex: markets/<mercado>, competitors, official-records)",
+        "signal": "tipo de sinal (ex: fundraising, hiring-tech, novo-registro)",
+        "summary": "resumo de 1 linha do sinal",
+        "week": "AAAA-WXX em que o sinal apareceu",
+        "intensity": "1.0 | 0.7 | 0.4 | 0.2 (forca do sinal, ver _playbook.md)",
+        "url": "https://fonte"
+      }
+    ],
+    "score": "numero, resultado de Fit x Intencao x Recencia x Stack",
+    "cluster": "rotulo do agrupamento de sinais (ex: 'expansao', 'troca de fornecedor')",
+    "status": "ACCUMULATING | PROPOSED | CONTACTED | PARKED",
+    "last_seen_week": "AAAA-WXX da ultima vez que a conta teve sinal",
+    "proposed_week": "AAAA-WXX em que virou proposta (null se ainda nao)"
+  },
+  "last_run_week": null,
+  "last_run_date": null,
+  "accounts": []
+}

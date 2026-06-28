@@ -3,8 +3,9 @@
 <!-- COMO ADAPTAR ESTE EIXO:
      Este é o arquivo MAIS IMPORTANTE do eixo. Ele tem que ser self-contained: assuma que o agente
      clonou o repo e tem ZERO contexto. A espinha (passos 1, 2, 4, 5, 6, 7) é idêntica em todos os eixos:
-     copie de competitors/, community/ ou social/ (o que for mais parecido). Só o passo 3 (DESCOBERTA)
-     muda de eixo pra eixo: é ali que você descreve COMO buscar a sua fonte. Troque <seu-eixo> pelo nome real. -->
+     copie de competitors/ (julgamento de lista conhecida) ou official-records/ (determinístico), o que
+     for mais parecido. Só o passo 3 (DESCOBERTA) muda de eixo pra eixo: é ali que você descreve COMO
+     buscar a sua fonte. Troque <seu-eixo> pelo nome real. -->
 
 > Prompt self-contained. Idioma de toda saída: PT-BR. NUNCA use travessão.
 

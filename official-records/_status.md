@@ -1,4 +1,4 @@
-# Status: Social
+# Status: Registros Oficiais
 
 > Dashboard do eixo + log de execuções. Atualizado a cada run.
 > Estilo: nunca usar travessão.
@@ -12,6 +12,6 @@
 
 ## Weekly Run Log
 
-| Semana | Data do run | # sinais | # NEW | # ESCALATING | Notas |
+| Semana | Data do run | # registros | # NEW | # ESCALATING | Notas |
 | --- | --- | --- | --- | --- | --- |
 | (exemplo, apague) 2026-W01 | 2026-01-05 | 0 | 0 | 0 | Bootstrap, memória vazia |

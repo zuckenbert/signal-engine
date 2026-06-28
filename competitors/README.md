@@ -1,6 +1,6 @@
 # Eixo: Concorrentes (`competitors/`)
 
-> **Modo: JULGAMENTO.** A própria LLM coleta dentro da rotina (`_routine_prompt.md`), decidindo o que buscar e quais páginas ler. NÃO tem `collect.sh` nem Actions de coleta, porque não dá pra escrever um script burro que saiba o que é relevante. Entenda o porquê na seção "Quem faz o que: braço e cérebro" do README da raiz.
+> **Modo: JULGAMENTO, sabor LISTA CONHECIDA.** A própria LLM coleta dentro da rotina (`_routine_prompt.md`), decidindo o que buscar e quais páginas ler. NÃO tem `collect.sh` nem Actions de coleta, porque não dá pra escrever um script burro que saiba o que é relevante. O sabor é LISTA CONHECIDA: você JÁ SABE quem observar (os concorrentes do `MARKET.md`). Isso difere do motor `markets/`, que também é julgamento mas no sabor DESCOBERTA (pesca empresas desconhecidas a partir de um sinal). Entenda os dois sabores na seção "Os dois modos e os dois sabores de julgamento" do README da raiz.
 
 Antena apontada para o movimento dos seus concorrentes: o que eles publicam na web (notícias, lançamentos, parcerias) e o que muda nas páginas próprias deles (site, blog, sala de imprensa).
 
