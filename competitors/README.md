@@ -1,5 +1,7 @@
 # Eixo: Concorrentes (`competitors/`)
 
+> **Modo: JULGAMENTO.** A própria LLM coleta dentro da rotina (`_routine_prompt.md`), decidindo o que buscar e quais páginas ler. NÃO tem `collect.sh` nem Actions de coleta, porque não dá pra escrever um script burro que saiba o que é relevante. Entenda o porquê na seção "Quem faz o que: braço e cérebro" do README da raiz.
+
 Antena apontada para o movimento dos seus concorrentes: o que eles publicam na web (notícias, lançamentos, parcerias) e o que muda nas páginas próprias deles (site, blog, sala de imprensa).
 
 ## O que este eixo monitora

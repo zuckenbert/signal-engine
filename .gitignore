@@ -4,9 +4,10 @@
 # Lixo de SO
 .DS_Store
 
-# Dados brutos de coleta (cada eixo pode escrever aqui durante o run)
-_raw/
-**/_raw/
+# Dados brutos de coleta: NAO ignorar. As pastas _raw/ sao VERSIONADAS de proposito.
+# Elas guardam o dado cru que o coletor deterministico (collect.sh) commita pra rotina
+# (a LLM) ler depois. Esse _raw versionado e o "bastao" entre o GitHub Actions (coleta) e
+# a rotina de interpretacao. Por isso nao entra aqui no .gitignore.
 
 # Temporarios
 *.tmp

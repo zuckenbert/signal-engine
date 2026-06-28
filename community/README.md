@@ -1,5 +1,7 @@
 # Eixo: Comunidade (`community/`)
 
+> **Modo: DETERMINÍSTICO.** A coleta é um script burro (`collect.sh`) que roda no CI / GitHub Actions, commita o dado cru em `_raw/` e a rotina (LLM) lê esse `_raw` depois. Entenda o porquê na seção "Quem faz o que: braço e cérebro" do README da raiz.
+
 Antena apontada para intent dev-led / community-led: quem do seu ICP interage com os seus projetos open source, o seu fórum ou a sua comunidade.
 
 ## O que este eixo monitora

@@ -19,17 +19,17 @@ Leia, nesta ordem:
 3. `community/_state.json`: a MEMÓRIA. Anote `last_run_date` e `themes[]`. Defina `startDate = last_run_date` (se null, 1o run).
 4. `community/_status.md`: último run no Weekly Run Log.
 
-## Passo 3: Descoberta
+## Passo 3: Descoberta (eixo DETERMINÍSTICO: leia o `_raw`)
 
-Colete a atividade da comunidade na janela, desde `startDate`. De forma agnóstica de ferramenta:
+Este eixo é DETERMINÍSTICO. O coletor (`community/collect.sh`) já rodou no CI (GitHub Actions) e deixou os arquivos `community/_raw/<data>.json` da janela versionados no Git. O braço já coletou: você só precisa LER o dado cru, não decidir o que buscar.
 
-- **API da fonte**: para repos open source, use a API do host de repositórios pra puxar forks, stars, issues e PRs novos desde `startDate`. Para fórum/comunidade com API, use-a.
-- **Busca / leitura de páginas**: se não houver API (fórum aberto, por exemplo), use sua ferramenta de busca web (ex: um MCP de web search) e sua ferramenta de leitura/scrape de páginas pra pegar tópicos e mensagens novas na janela.
+- **Leia o `_raw` da janela**: abra todos os `community/_raw/<data>.json` cujas datas caem entre `startDate` e o fim da janela. Esse é o dado cru (forks, stars, issues, PRs, mensagens) que o coletor salvou.
+- **Se faltar algum dia** (um arquivo `_raw/<data>.json` esperado não existe, ex: o Actions não rodou): você mesmo pode rodar `bash community/collect.sh` (ou `DATE=AAAA-MM-DD bash community/collect.sh` pra um dia específico) pra preencher a lacuna antes de continuar.
 - **Filtre insiders**: remova sua própria equipe e bots, conforme o filtro do `_targets.md`.
-- **Identifique o ator**: para cada evento externo, descubra a pessoa e a empresa por trás (pode usar busca web pra enriquecer handle -> empresa/cargo).
+- **Enriqueça o ator**: para cada evento, descubra a pessoa e a empresa por trás (pode usar busca web pra enriquecer handle -> empresa/cargo). É aqui que entra o seu julgamento, não na coleta.
 - **Classifique fit**: compare o ator contra o ICP (seção 4 do `MARKET.md`). Descarte quem não tem fit (ruído).
 
-Junte os achados crus: ator (pessoa/empresa), fonte/projeto, tipo de evento, data, URL(s).
+Junte os achados crus já enriquecidos: ator (pessoa/empresa), fonte/projeto, tipo de evento, data, URL(s).
 
 ## Passo 4: Reconciliação contra `_state.json`
 

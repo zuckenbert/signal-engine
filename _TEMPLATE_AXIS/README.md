@@ -5,6 +5,8 @@
 
 ## Como criar um eixo novo a partir deste esqueleto
 
+> **Ao criar um eixo, DECIDA o modo.** Determinístico: adicione um `collect.sh` (coleta burra de uma API/endpoint fixo) + um workflow no `.github/workflows/`, e leia o `_raw` na rotina (veja `community/`). Julgamento: deixe a LLM coletar dentro do `_routine_prompt.md`, sem `collect.sh` (veja `competitors/`). A pergunta que decide: "a coleta dá pra escrever como um script burro que sempre faz a mesma coisa?" (veja a seção "Quem faz o que: braço e cérebro" no README da raiz).
+
 1. **Copie esta pasta** e renomeie pro nome do seu eixo (ex: `events/`, `jobs/`, `news/`).
 2. **Preencha `_targets.md`**: diga quais alvos/fontes esse eixo monitora e o mapa sinal -> produto, sempre apontando de volta pro `MARKET.md` como fonte de verdade.
 3. **Preencha `_routine_prompt.md`**: é o arquivo mais importante. Adapte a parte de DESCOBERTA ao tipo de fonte do seu eixo (a espinha de reconciliação + continuidade + relatório é a mesma dos outros eixos, pode copiar de `competitors/_routine_prompt.md`, `community/_routine_prompt.md` ou `social/_routine_prompt.md`, o que for mais parecido).

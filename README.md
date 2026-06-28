@@ -4,6 +4,14 @@ Um template (fork e preencha) para construir uma máquina que escuta o seu merca
 
 > Este é um TEMPLATE agnóstico de mercado. Não há nenhuma empresa, produto, concorrente, regulador ou ferramenta proprietária embutida. Você clona, preenche um arquivo de config (`MARKET.md`), ajusta os alvos de cada eixo e sai rodando.
 
+### 👋 Não entende nada de código? Sem problema.
+
+Copie a linha abaixo e cole no seu assistente de IA (ex: Claude), trocando a URL pela deste repositório:
+
+> "Leia o repositório <URL_DESTE_REPO> e me guie, passo a passo, pra montar meu monitoramento de mercado. Pode me entrevistar pra preencher as configurações."
+
+O assistente vai ler o repo, te entrevistar e conduzir tudo. Você não precisa saber o que é Actions, schedule ou Git.
+
 ## O que é
 
 Signal Engine é uma máquina que escuta o mercado. Toda semana ela faz a mesma rotina disciplinada: várias fontes de sinal (cada fonte é uma pasta, chamada de "eixo") coletam o que aconteceu, separam o ruído do que importa, reconciliam o achado contra uma memória de continuidade (pra saber o que é novo de verdade vs o que já foi visto antes) e, no fim, um DIGEST costura tudo num relatório único.
@@ -55,6 +63,73 @@ O digest concatena o relatório de cada eixo da semana num markdown único, cost
 
 O digest é gerado por `digest/build_digest.sh` (veja `digest/README.md`).
 
+## Quem faz o que: braço e cérebro
+
+A confusão mais comum nesse tipo de sistema é misturar duas coisas que precisam ficar separadas: o trabalho mecânico e o trabalho de pensar. Aqui elas têm donos diferentes.
+
+**Regra de ouro: GitHub Actions = trabalho MECÂNICO (coletar dado determinístico e enviar e-mail). Schedule / rotina de LLM = trabalho de PENSAR (interpretar sinais e montar o resumo).**
+
+### A pergunta que decide onde a coleta roda
+
+Pra cada fonte de sinal, pergunte: "a coleta dá pra escrever como um script burro que sempre faz a mesma coisa?"
+
+- **SE DÁ** (chamar uma API, raspar um endpoint fixo): vira um `collect.sh` e roda no **GitHub Actions** (barato, confiável, guarda o secret, sem LLM). Ele só busca o dado cru e commita em `_raw/<data>.json`. Esse `_raw` versionado é o "bastão" que o Actions passa pra rotina ler depois.
+- **SE NÃO DÁ** porque a coleta exige julgamento (decidir o que buscar na web aberta, ler páginas e avaliar relevância): a **própria LLM coleta**, chamando as ferramentas de busca dentro da rotina. Nesse caso o eixo NÃO tem Actions de coleta.
+
+### A interpretação é sempre da LLM, e é por eixo
+
+Não existe um cérebro central único. Cada eixo tem a sua própria rotina (schedule de LLM) que interpreta só o dele: enriquece o ator, classifica fit, reconcilia contra a memória de continuidade e escreve o relatório daquele eixo. Depois, um passo final de **digest** (também um schedule de LLM) MONTA tudo: concatena os relatórios já prontos de cada eixo (via `digest/build_digest.sh`) e escreve o resumo executivo. O push desse resultado acende um Actions `on: push` que renderiza e envia o e-mail.
+
+### Cadências podem diferir (coletar diário, pensar semanal)
+
+O Actions desacopla "coletar com frequência" de "pensar com frequência". Um `collect.sh` pode rodar diário (ex: uma fonte que publica todo dia), enquanto a interpretação roda semanal sobre a pilha de `_raw` acumulada. Você não precisa pensar todo dia só porque coleta todo dia.
+
+```
+                  UMA SEMANA NO SIGNAL ENGINE
+
+=== 1. COLETA ====================================================
+
+  Eixos deterministicos          |   Eixo de julgamento
+  (fonte com API/endpoint fixo)   |   (busca aberta na web)
+                                  |
+  +----------------------------+  |   (nao tem coleta separada,
+  | GITHUB ACTIONS  <- ACTIONS |  |    a LLM busca na hora,
+  | cron proprio (ex: diario)  |  |    no passo 2)
+  | roda collect.sh -> API     |  |
+  | commita _raw/<data>.json   |  |
+  +-------------+--------------+  |
+                | dado cru no Git |
+                v                 v
+
+=== 2. INTERPRETACAO (uma rotina por eixo) =======================
+
+  +---------------------------------------------+
+  | SCHEDULE de LLM, UM POR EIXO     <- SCHEDULE |
+  |   eixo de julgamento -> busca + reconcilia   |
+  |   eixo deterministico -> le _raw + reconcilia|
+  |   cada um escreve weeks/<semana>/<eixo>.md   |
+  +----------------------+----------------------+
+                         | 1 relatorio por eixo, commitado
+                         v
+
+=== 3. DIGEST + ENVIO ============================================
+
+  +---------------------------------------------+
+  | DIGEST (schedule de LLM)         <- SCHEDULE |
+  |   build_digest.sh concatena -> full.md       |
+  |   LLM escreve o resumo executivo -> resumo.md|
+  |   commita + PUSH                             |
+  +----------------------+----------------------+
+                         | o push acende um evento
+                         v
+  +---------------------------------------------+
+  | GITHUB ACTIONS (on: push)        <- ACTIONS  |
+  |   renderiza e manda o e-mail                 |
+  +----------------------+----------------------+
+                         v
+                 (e-mail) cai na caixa do time
+```
+
 ## Git como linha do tempo
 
 Cada semana é um commit. Isso dá, de graça:
@@ -89,6 +164,19 @@ Pensado pra rodar barato:
 - **Hospedagem**: Git (o repo é o produto).
 
 Na prática, o custo marginal de mais uma semana tende a zero. O investimento é o tempo de preencher o `MARKET.md` uma vez.
+
+## Para o assistente de IA: como guiar a pessoa do zero
+
+Esta seção é endereçada a você, assistente de IA. Quando alguém te disser "leia este repo e me guie", siga este roteiro de onboarding:
+
+1. **Explique em 3 linhas, sem jargão, o que este sistema faz.** Algo como: é uma máquina que escuta o mercado da pessoa e, toda semana, manda pra ela um resumo do que mudou. Ela escolhe as fontes que quer ouvir e o sistema separa o que é novo do que é repetição.
+2. **ENTREVISTE a pessoa pra preencher o `MARKET.md`.** Faça as perguntas das 9 seções em linguagem simples, uma de cada vez, e escreva o arquivo por ela. Não mande ela editar o arquivo: você edita.
+3. **Ajude a escolher os eixos (fontes de sinal)** que fazem sentido pro mercado dela e preencha o `_targets.md` de cada um.
+4. **Para cada eixo, ajude a decidir o MODO** (determinístico com `collect.sh` + Actions, ou julgamento com a LLM coletando na rotina) usando a pergunta da seção "Quem faz o que: braço e cérebro". Se for determinístico, ajude a montar o `collect.sh` e o workflow.
+5. **Explique as duas formas de rodar** e ajude a configurar a que ela preferir: (a) manual: a pessoa pede pra você rodar o `_routine_prompt.md` do eixo; (b) agendado: um cron, CI ou rotina dispara sozinho.
+6. **Rode a primeira semana JUNTO com a pessoa** e mostre o relatório gerado.
+
+Lembrete pra você, assistente: linguagem simples, nunca assuma conhecimento técnico, nunca use travessão, idioma PT-BR.
 
 ## Estilo de escrita
 

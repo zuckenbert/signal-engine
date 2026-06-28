@@ -1,0 +1,49 @@
+# ============================================================================
+# WORKFLOW DE EXEMPLO: monta e envia o DIGEST por evento (on: push)
+# ============================================================================
+# Este e o padrao "EVENTO". Quando um relatorio de eixo e commitado e empurrado
+# (push) pra dentro de qualquer pasta weeks/, este Actions ACENDE sozinho.
+# Ele roda o build_digest.sh (que concatena os relatorios da semana) e, no fim,
+# dispara o envio do e-mail.
+#
+# Atencao ao modelo mental: a INTERPRETACAO (cada eixo + o resumo executivo do
+# digest) e trabalho de LLM e normalmente acontece FORA daqui, no agendador do
+# seu assistente. Este workflow e so o BRACO da etapa de envio: ele pega o que
+# a LLM ja escreveu e renderiza/manda. Sem LLM aqui.
+#
+# Estilo: comentarios em PT-BR, sem travessao.
+# ----------------------------------------------------------------------------
+
+name: digest
+
+on:
+  push:
+    # So acende quando algo muda dentro de uma pasta weeks/ (um relatorio novo).
+    paths:
+      - "**/weeks/**"
+  # Permite disparar manualmente pela aba Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repo
+        uses: actions/checkout@v4
+
+      - name: Monta o digest da semana
+        # Sem WEEK_ID, o script usa a ISO week de hoje (UTC).
+        # A saida vai pra digest/weeks/<WEEK_ID>/full.md.
+        run: bash digest/build_digest.sh
+
+      - name: Envia o e-mail
+        # PLACEHOLDER: troque pelo seu envio de e-mail (ex: uma action de SMTP).
+        # Nao ha provedor amarrado. Este passo so existe pra marcar o lugar.
+        # Configure o destino, o assunto e as credenciais como secrets do repo.
+        run: |
+          echo "PLACEHOLDER de envio de e-mail."
+          echo "Aqui entraria o envio do digest/weeks/<WEEK_ID>/full.md (ou resumo.md)."
+          echo "Troque por uma action de SMTP ou pelo seu provedor de e-mail."

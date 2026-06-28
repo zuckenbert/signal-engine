@@ -19,7 +19,9 @@ Leia, nesta ordem:
 3. `competitors/_state.json`: a MEMÓRIA. Anote `last_run_date` e a lista `themes[]`. Defina `startDate = last_run_date` (se for null, é o 1o run: trate a janela só como a semana atual).
 4. `competitors/_status.md`: confira o último run no Weekly Run Log.
 
-## Passo 3: Descoberta
+## Passo 3: Descoberta (eixo de JULGAMENTO: você coleta)
+
+Este eixo é de JULGAMENTO. Ele NÃO tem `collect.sh` nem Actions de coleta, porque não dá pra escrever um script burro que saiba de antemão "o que é relevante que o concorrente fez". Decidir as buscas, abrir as páginas certas e avaliar o que importa é trabalho seu (a LLM). Você é quem coleta aqui, na hora, dentro desta rotina.
 
 Para cada concorrente em `_targets.md`, colete o que é novo desde `startDate`. Use as ferramentas que o seu agente tiver conectadas (como conectores / MCP). De forma agnóstica de ferramenta:
 

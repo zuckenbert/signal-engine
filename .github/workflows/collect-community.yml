@@ -1,0 +1,53 @@
+# ============================================================================
+# WORKFLOW DE EXEMPLO: coleta deterministica do eixo Comunidade
+# ============================================================================
+# Este e o BRACO. Coleta MECANICA, SEM LLM. Ele so roda o collect.sh do eixo
+# (que chama uma API/endpoint fixo) e commita o dado cru em community/_raw/.
+# Esse _raw versionado e o "bastao" que o Actions passa pra rotina (a LLM) ler
+# e interpretar depois. A INTERPRETACAO nao acontece aqui.
+#
+# Estilo: comentarios em PT-BR, sem travessao.
+# ----------------------------------------------------------------------------
+
+name: collect-community
+
+on:
+  # Roda no agendador do GitHub. O cron abaixo esta SEMANAL (segunda 06:00 UTC).
+  # Pra coletar DIARIO, troque por: "0 6 * * *" (todo dia as 06:00 UTC).
+  # Lembre: coletar diario nao obriga a pensar diario. A rotina (LLM) pode
+  # rodar semanal sobre a pilha de _raw acumulada.
+  schedule:
+    - cron: "0 6 * * 1"
+  # Permite disparar manualmente pelo botao "Run workflow" na aba Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: write   # precisa pra commitar o _raw de volta no repo
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repo
+        uses: actions/checkout@v4
+
+      - name: Roda o coletor deterministico
+        # Aqui NAO ha LLM: e so um script burro chamando a fonte.
+        # Se a sua fonte exige token, configure-o como SECRET do repo
+        # (Settings -> Secrets and variables -> Actions) e exponha via env:
+        env:
+          MINHA_API_KEY: ${{ secrets.MINHA_API_KEY }}   # exemplo, troque pelo nome do seu secret
+        run: bash community/collect.sh
+
+      - name: Commita o dado cru (_raw)
+        run: |
+          git config user.name  "signal-engine-bot"
+          git config user.email "signal-engine-bot@users.noreply.github.com"
+          git add community/_raw/
+          # So commita se houver mudanca (evita commit vazio quebrar o passo).
+          if git diff --cached --quiet; then
+            echo "Nenhum dado novo pra commitar."
+          else
+            git commit -m "chore(community): coleta deterministica _raw"
+            git push
+          fi
