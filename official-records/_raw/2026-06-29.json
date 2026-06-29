@@ -1,0 +1,15 @@
+{
+  "_nota": "JSON de EXEMPLO. Substitua SOURCE_URL pela sua fonte real pra este arquivo virar dado cru de verdade.",
+  "collected_at": "2026-06-29",
+  "source": "https://api.exemplo.com/registros",
+  "records": [
+    {
+      "id": "exemplo-1",
+      "type": "novo-registro",
+      "actor": "trocar-pelo-ator-real",
+      "title": "Trocar pelo titulo real do registro/ato",
+      "published_at": "2026-06-29",
+      "url": "https://exemplo.com/registro/1"
+    }
+  ]
+}
